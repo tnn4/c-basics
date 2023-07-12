@@ -12,7 +12,7 @@ Table of Contents
 - [Compilation](c_compilation.md)
 - [Pointers](c_ptr.md)
 - [C-Strings](c_strings.md)
-- [Misc](c_misc.mds)
+- [Misc](c_misc.md)
 
 
 Compile
