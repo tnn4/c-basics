@@ -10,7 +10,7 @@ Code has been tested on Linux, specifically PopOS 22.04
 Table of Contents
 - []()
 - [Compilation](c_compilation.md)
-- [Pointers](C_ptr.md)
+- [Pointers](c_ptr.md)
 - [C-Strings](c_strings.md)
 - [Misc](c_misc.mds)
 
