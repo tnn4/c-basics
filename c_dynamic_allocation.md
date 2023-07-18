@@ -1,3 +1,5 @@
+# C Dynamic Memory Allocation
+
 ## Dynamically allocate strings
 
 It is sometimes impossible to to anticipate how long an array of chars(strings) can be. We can allocate strings dynamically and determine how long a string needs to be at runtime.
@@ -76,10 +78,10 @@ p = q;
 
 ```
 p[*] [ ]<-- this block of memory is now garbage
-   \____ 
-        |
-        v 
-p[*]-> [ ]   
+   \______ 
+          |
+          v 
+p[*] --> [ ]   
 ```
 
 A block of memory that is no longer accessible is **garbage**.
@@ -107,15 +109,17 @@ Reusing a piece of memory that previously `free`d is an error.
 // Bad code
 char *p = malloc(4); // allocate memory for a string of len 3
 ...
-free(p); // p has been released into the wild
+free(p); // p's memory has been released into the , p is now a dangling pointer
 ...
-strcpy(p, "abc"); // ** WRONG ** , you're trying to use memory that's no longer yours, this is a programming crime so the OS will yell at you
+strcpy(p, "abc"); // ** WRONG ** , try to use dangling pointer p, you're trying to use memory that's no longer yours, this is a programming crime so the OS will crash and yell at you
 ```
 ## Linked Lists
 
 Dynamic storage allocation is useful for building lists, trees, graphs and other linked data structures.
 
 The most basic linked data structure: a linked list.
+
+Fun fact: Although C programmers love linked lists, Rust programmers are not so enthusiastic: [Learning Rust With Entirely Too Many Linked Lists](https://rust-unofficial.github.io/too-many-lists/)
 
 
 ```
@@ -127,3 +131,53 @@ Linked lists are more flexible than arrays:
 - BUT: you lose random access
 - any element in an array can be accessed in the same amount of time, so O(1)
 - accessing a node is fast if node is close to beginning, slow if node is close to n so O(n/2)
+
+Declare (simple) Node type
+
+```c
+struct node {
+  int value;
+  struct node *next;
+};
+```
+
+Now we need a way to keep track of where the list begins:
+```c
+struct node *first = NULL;
+```
+
+How to create a node:
+1. Allocate memory for the node
+2. Store data in the node
+3. Insert node into the list
+
+code:
+```c
+struct node *new_node;
+
+new_node = malloc(sizeof(struct node));
+```
+memory:
+```
+new_node [*] --> [     ][    ]
+                  value  next
+```
+
+code:
+```c
+(*new_node).value = 10; // notice that we applied indirection operator(*) to new_node
+                        // the parentheses around around *new_node are mandatory  because the
+                        // . operator would otherwise take precedence
+```
+memory:
+```
+new_node [*] --> [  10 ][    ]
+                  value  next
+```
+
+Shorcut:
+Use `->` (right arrow selection) operator if you don't want deref(*) and dot(.)
+
+traditional | `->`
+--- | ---
+`(*new_node).value = 10` | `new_node->value = 10;` 
