@@ -12,6 +12,7 @@ Table of Contents
 - [Compilation](c_compilation.md)
 - [Pointers](c_ptr.md)
 - [C-Strings](c_strings.md)
+- [Dynamic Memory Allocation](c_dynamic_allocation.md)
 - [Misc](c_misc.md)
 
 
