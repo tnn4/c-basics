@@ -181,3 +181,64 @@ Use `->` (right arrow selection) operator if you don't want deref(*) and dot(.)
 traditional | `->`
 --- | ---
 `(*new_node).value = 10` | `new_node->value = 10;` 
+
+Read into your linked list :
+
+`scanf("%d", &new_node->value);`
+
+Notice that `&new_node-> value === &(*new_node).value`. We do this because we're trying to pass the pointer to value not value itself.
+
+Let's use linked lists to ability to insert anywhere to our advantage which is something arrays can't do.
+
+new_node->next = first;
+
+first = new_node;
+
+Let's trace the process of inserting two nodes into an empty list. Null pointers are represented as diagonal lines (/)
+
+```
+[/]      null pointer
+[*] ---> pointer
+
+first = NULL;                           first    [/] <-- null pointer
+                                        new_node [ ]
+
+new_node = malloc(sizeof(struct node)); first    [/]
+                                        new_node [*] --> [ ][ ]
+
+new_node->value = 10                    first    [/]
+                                        new_node [*] --> [10][ ]
+
+new_node->next = first;                 first    [/]
+                                        new_node [*] --> [10][/]
+
+first = new_node;
+                                        first[*]
+                                                \
+                                                 v
+                                                [10][*]
+                                                 ^
+                                                /
+                                        new_node
+
+new_node = malloc(sizeof(struct node)); first[*] ---> [10][/]
+                                        new_node[*] --->[ ][ ]
+
+new_node->value = 20;                   first[*] ---> [10][/]
+                                        new_node[*] ---> [20][/]
+
+new_node->next = first;                 first[*] --------------
+                                                               \
+                                                              [10][/]
+                                                               /
+                                        new_node[*]-->[20][*]--
+
+
+first = new_node;                       first[*]
+                                                \
+                                                 v
+                                                [20][*]--->[10][*]
+                                                 ^
+                                                /
+                                        new_node
+```
