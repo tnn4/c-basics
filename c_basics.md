@@ -1,8 +1,7 @@
 # C Basics
 
 
-
-## Compilation Steps
+## Compile
 
 Preprocessing
 ```c
@@ -44,6 +43,13 @@ Fun fact: For a cross-platform solution, you can use the [Zig](https://ziglang.o
 
 `zig cc -o my_code my_code.c`
 
+https://stackoverflow.com/questions/3375697/what-are-the-useful-gcc-flags-for-c
+
+
+__naming conventions__
+- see: https://stackoverflow.com/questions/1722112/what-are-the-most-common-naming-conventions-in-c
+
+# Language Features
 
 ## Comments
 
@@ -95,3 +101,37 @@ void read_an_int() {
 ```
 
 See: [basic C source example](src/basic.c)
+
+## type aliasing
+- redefine name of already existing data type
+- i.e. type alias
+- `typdef unsigned char byte_t`
+
+## arrow operator
+`foo->bar` is equivalent to `(*foo).bar`, i.e. it gets the *member* called `bar` from the *struct* that `foo` points to.
+
+see: https://stackoverflow.com/questions/2575048/arrow-operator-usage-in-c
+
+__indirection with pointers example__
+
+```c
+#include <stdio.h>  
+int main()  {  
+    // Create an int binding/container and attach/store it with value 1
+    int x=1;
+    
+    // Create ptr to int, pointers have types too
+    int *ptr;
+    
+    // Store the address of x into ptr, NOTE: we're storing the address which is distinct from the value
+    // think of this as creating a link to endpoint x with the entry `ptr`
+    ptr=&x;
+    
+    // Dereference the address to get to the value value, i.e *(address) -> value
+    *ptr=8;
+    printf("value of x is : %d", x);  
+    return 0;
+}
+```
+
+
