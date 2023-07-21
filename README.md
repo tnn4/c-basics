@@ -5,8 +5,7 @@ Collection of C notes and example source code.
 Requirements:
 - C compiler
 
-Code has been tested on Linux, specifically PopOS 22.04 with gcc version: `gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0
-`
+Code has been tested on Linux, specifically PopOS 22.04 with gcc version: `gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0`
 
 Table of Contents
 - []()
