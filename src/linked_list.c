@@ -100,10 +100,25 @@ struct Node* search_list(struct Node *list, char *value_to_match){
         }
     }
     */
-    for(; list != NULL; list->next){
+    int i = 0;
+    int length;
+    // This loop never terminates
+  //for(; list != NULL; list->next){
+    
+    // but this does!
+    for(; list != NULL; list=list->next){
+        // see: https://stackoverflow.com/questions/8257714/how-can-i-convert-an-int-to-a-string-in-c
+        // length = snprintf(NULL, 0, "%d", i);
+        // char num_as_str[length+1];
+        // println(num_as_str);
+        printf("i = %d\n", i);
         if (strcmp(list->value, value_to_match) == 0){
+            println("match");
             return list;
+        } else {
+            println("no match");
         }
+        i++;
     }
 
     // return NULL if there is no match
@@ -115,6 +130,6 @@ struct Node* search_list_and_print(struct Node *list, char *value_to_match){
     if (result == NULL){
         println("There was no match.");
     } else {
-        println("Found a match ");
+        println("Found a match.");
     }
 }
