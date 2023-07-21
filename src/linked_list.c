@@ -7,7 +7,10 @@
 #define BUFSIZE 128
 
 void println(char *);
+// Linked Lists
 struct Node* add_to_list(struct Node *, char *);
+struct Node* search_list(struct Node *, char *);
+struct Node* search_list_and_print(struct Node *, char *);
 void iterate_list(struct Node *);
 
 struct Node {
@@ -45,6 +48,9 @@ int main(void) {
 
     iterate_list(first);
 
+    search_list_and_print(first, "not found"); // should fail
+    search_list_and_print(first, "another node"); // should find match
+
     println("\n[OK]\n");
     return 0;
 }
@@ -81,5 +87,34 @@ void iterate_list(struct Node *list){
         if (i == 100){
             break;
         }
+    }
+}
+
+struct Node* search_list(struct Node *list, char *value_to_match){
+    /*while( list != NULL) {
+        // you have to use strcmp
+        if ( strcmp(list->value, value_to_match) == 0 ){
+            return list;
+        } else {
+
+        }
+    }
+    */
+    for(; list != NULL; list->next){
+        if (strcmp(list->value, value_to_match) == 0){
+            return list;
+        }
+    }
+
+    // return NULL if there is no match
+    return NULL;
+}
+
+struct Node* search_list_and_print(struct Node *list, char *value_to_match){
+    struct Node* result = search_list(list, value_to_match);
+    if (result == NULL){
+        println("There was no match.");
+    } else {
+        println("Found a match ");
     }
 }
