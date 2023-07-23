@@ -10,8 +10,9 @@ void println(char *);
 // Linked Lists
 struct Node* add_to_list(struct Node *, char *);
 struct Node* search_list(struct Node *, char *);
+struct Node* delete_from_list(struct Node *, char *);
 struct Node* search_list_and_print(struct Node *, char *);
-void iterate_list(struct Node *);
+void print_list(struct Node *);
 
 struct Node {
     char value[NODE_SIZE + 1];
@@ -46,10 +47,17 @@ int main(void) {
     first = add_to_list(first, "another node");
     first = add_to_list(first, "another node 2");
 
-    iterate_list(first);
+    print_list(first);
 
     search_list_and_print(first, "not found"); // should fail
     search_list_and_print(first, "another node"); // should find match
+
+    
+    println("deleting node with value: 'another node'");
+    
+    delete_from_list(first, "another node");
+
+    print_list(first);
 
     println("\n[OK]\n");
     return 0;
@@ -77,8 +85,12 @@ struct Node* add_to_list(struct Node *list, char *value){
     return new_node;
 }
 
+
+
 // print out values of the linked list
-void iterate_list(struct Node *list){
+void print_list(struct Node *list){
+    
+    println("\nPrinting list");
     int i = 0;
     while( list != NULL){
         printf("[%d]:%s\n", i, list->value);
@@ -126,10 +138,40 @@ struct Node* search_list(struct Node *list, char *value_to_match){
 }
 
 struct Node* search_list_and_print(struct Node *list, char *value_to_match){
+    
+    println("\nSearching list");
     struct Node* result = search_list(list, value_to_match);
     if (result == NULL){
         println("There was no match.");
     } else {
         println("Found a match.");
     }
+}
+
+/* Delete node from list */
+// 1. Locate node to delete
+// 2. Alter previous node so it "bypasses" the deleted node
+// 3. Call 'free' to reclaim space taken by deleted node
+
+// Tricky part: if we search the obvious way with only one pointer, we won't have the information of the previous node, only the deleted one
+// We need to use a trailing pointer, where we keep both `prev` and `curr` so we can next prev to bypass the deleted node
+struct Node* delete_from_list(struct Node *list, char *value_to_delete){
+    
+    struct Node *cur, *prev;
+    
+    // 1. Locate node to delete
+    for (cur = list, prev = NULL;
+        cur != NULL && strcmp(cur->value, value_to_delete) != 0; // cur->value != value_to_delete;
+        prev = cur, cur=cur->next)
+    ;
+    if (cur == NULL)
+        return list; /* value not found */
+    if (prev == NULL)
+        list = list->next; /* value is first node */
+    else {
+        // 2. This is where we perform the bypass
+        prev->next = cur->next;
+    }
+    free(cur); // 3. reclaim space
+    return list;
 }
