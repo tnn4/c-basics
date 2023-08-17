@@ -1,5 +1,14 @@
 # C Basics
 
+## Header Files
+
+Why does c need header files(`.h`)?
+
+https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html
+
+Header files eliminate code redundancy (DRY).
+With a header file, the related declarations appear in only one place.
+
 
 ## Compile
 
