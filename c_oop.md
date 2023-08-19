@@ -1,5 +1,10 @@
 ## C OOP
 
+Notes on implementing OOP from scratch in C as an education exercise.
+
+Prereqs:
+- understand pointers: [here](c_ptr.md)
+
 OOP is taught exceptionally poorly because it glosses over the fact that all its concepts can be implemented from a procedural language like C.
 
 read http://staff.washington.edu/gmobus/Academics/TCES202/Moodle/OO-ProgrammingInC.html
@@ -13,6 +18,8 @@ For example it's hard to grok polymorphism which is basically passing around a p
 Or understanding the concept of structuring data instead of just using primitives to and passing around (higher order functions)/(pointers to functions).
 
 `higher order function == pointer to functions`
+
+Stack Overflow example:
 
 Here's a way to do OOP in C if you want to avoid C++:
 
@@ -46,3 +53,5 @@ see:
 - https://softwareengineering.stackexchange.com/questions/16025/why-is-oop-difficult
 - https://stackoverflow.com/questions/674722/struggling-with-c-coming-from-object-oriented-land
 - opaque pointers - https://stackoverflow.com/questions/7553750/what-is-an-opaque-pointer-in-c
+- example heap size java: https://stackoverflow.com/questions/4667483/how-is-the-default-max-java-heap-size-determined
+- 
