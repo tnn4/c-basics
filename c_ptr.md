@@ -26,6 +26,7 @@ Why are pointers so important?
 - Pointers allow OOP to be implemented
 
 What would programming be like without pointers?
+
 Error-prone. Imagine trying to find a needle in a haystack 1000 times a day, every day for the rest of your career. If that thought doesn't make you want to shoot yourself in the face, then nothing will.
 
 How are pointers implemented in hardware?
@@ -75,30 +76,49 @@ variables occupy one or more **bytes** of memory.
 
 What does pointing have to do with addressing?
 
+- _Pointers store addresses_
+
+
 If we store the address of variable `i` in the pointer variable `p`, we say `p` "points to" `i`
 
 What do pointers have to do with memory?
 
+- _Pointers store memory locations_
+
 What are pointers?
-A pointer is an address, a pointer variable is just a variable that stores an address.
+Variables that store memory locations.
+
+A pointer can therefore be thought of as an address.
+
 Addresses are represented by numbers, integers
 
-How do we model pointers?
-You show the content of `p`(the pointer variable) as an arrow directed towards `i`:
+So what can a pointer be thought as? How can we model pointers?
+
+As arrows (-->)! Arrows point. For an arrow to have some significance, it has to point to something. In programming these pointers usually point to a (location in memory)/ (memory address).
+
+To computers pointers are basically addresses, just a bunch of numbers in memory that point to location in memory that allow you to find some bytes. We come up with the arrow as an abstraction to make the addressing easier to understand.
+
+To monkeys like us, the arrow points. Computers only understand numbers and bits in memory
+
+
 
 Model:
 
-To monkeys like us, this means a lot. To a computer this means nothing. CPUs only understand bits in memory.
+
 ```
+Computer visual
+0 [10101110]
+
+Monkey Visual
+You show the content of `p`(the pointer variable) as an arrow directed towards `i`:
+
 p [*]---> [   ]i  
 ```
 
-To a computers pointers are basically addresses, just a bunch of numbers in memory that point to location in memory that allow you to find some bytes. We come up with the arrow as an abstraction to make the addressing easier to understand.
-
 What is a pointer again?
-A address that we store in memory that we intend to use to find that.
+A variable that points/leads to something.
 
-If pointers are just memory addresses which are themselves represented as numbers, pointers have to be stored somewhere too right?
+If pointers are just memory addresses which are themselves represented as numbers, pointers have to be stored somewhere too right? Yes. They're variables with special and important semantics.
 https://superuser.com/questions/1480913/how-are-memory-location-addresses-actually-stored-in-the-cpu
 
 ## Pointer syntax
@@ -127,3 +147,43 @@ int* i
 is not the same as
 
 `int *p1, *p2`
+
+## Pointer Assignment
+
+variable declaration
+
+```
+int i, j, *p, *q;
+```
+
+Give `p` the _address_ of `i`
+```
+p = &i; // Give p the _address_ of i
+
+
+```
+
+```
+
+q = p; // copy the contents of `p` ( the address of `i`) into `q`, 
+       // i.e. p and q point to the same place
+
+p[*]
+    \
+     v
+   [ ? ] i 
+     ^    
+    /  
+q[*]
+```
+
+## Number of addresses in 32-bit vs 64-bit
+
+Virtually all modern systems are byte addressed.
+
+Each byte has its own address so:
+- 32-bit systems have: 2^32 -> 4,294,967,296 bytes or ~ 4Gb
+- 64-bit sytsems have: 2^64 -> 1.84e19 bytes
+
+64 bits have 2^32 times the addressing space of 32 bit systems
+64-bit systems can theoretically reference 18,446,744,073,709,551,616 bytes, or 17,179,869,184 GB (16 exabytes) of memory
