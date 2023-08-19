@@ -42,9 +42,9 @@ void sample_roll(int n, int s){
         // printf("result: %d\n",d);
         total += d;
     }
-    double avg = total / times;
+    double avg = (double)total / times;
     printf("roll total: %d\n", total);
-    printf("roll average: %f\n", avg);
+    printf("roll average: %.2f\n", avg);
 
 }
 
@@ -69,11 +69,13 @@ int rand_uniform_distribution(int rangeLow, int rangeHigh) {
 }
 
 int roll_uniform(int n, int s) {
+
     int total = 0;
     for (int i=0;i<n;++i){
         total += rand_uniform_distribution(1,6);
     }
     return total;
+
 }
 
 void sample_roll_uniform(int n, int s){
@@ -89,9 +91,9 @@ void sample_roll_uniform(int n, int s){
         // printf("result: %d\n",d);
         total += d;
     }
-    double avg = total / trials;
+    double avg = (double)total / trials;
     printf("roll total: %d\n", total);
-    printf("roll average: %f\n", avg);
+    printf("roll average: %.2f\n", avg);
 
 }
 
@@ -111,7 +113,7 @@ void sample_roll_uniform2(int n, int s){
     }
     double avg = total / trials;
     printf("roll total: %d\n", total);
-    printf("roll average: %f\n", avg);
+    printf("roll average: %.2f\n", avg);
 
 }
 
