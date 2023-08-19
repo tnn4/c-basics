@@ -72,7 +72,7 @@ int roll_uniform(int n, int s) {
 
     int total = 0;
     for (int i=0;i<n;++i){
-        total += rand_uniform_distribution(1,6);
+        total += rand_uniform_distribution(1,s);
     }
     return total;
 
@@ -126,6 +126,7 @@ void main(void){
     for(;;){
         sample_roll(3,6);
         sample_roll_uniform(3,6);
+        sample_roll_uniform(2,10);
         printf("\n");
         
         sleep(2);
