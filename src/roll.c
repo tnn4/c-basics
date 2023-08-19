@@ -7,7 +7,7 @@
 
 int roll(int n, int sides){
     int total = 0;
-    for (int i=0; i<n; ++i ){
+    for ( int i=0; i<n; ++i ){
         total += rand() % sides;
     }
     return total;
@@ -51,13 +51,30 @@ void sample_roll(int n, int s){
 //see: https://stackoverflow.com/questions/11641629/generating-a-uniform-distribution-of-integers-in-c
 int uniform_distribution(int rangeLow, int rangeHigh) {
     
-    double myRand = rand()/(1.0 + RAND_MAX); 
+    double myRand = rand()/(1.0 + RAND_MAX); // <-- replace rand() with something better like drand48()
     int range = rangeHigh - rangeLow + 1;
     int myRand_scaled = (myRand * range) + rangeLow;
     return myRand_scaled;
 
 }
 
+int rand_uniform_distribution(int rangeLow, int rangeHigh) {
+
+    //double myRand = drand48()/(1.0 + RAND_MAX);
+    double myRand = drand48();
+    int range = rangeHigh - rangeLow + 1;
+    int myRand_scaled = (myRand * range) + rangeLow;
+    return myRand_scaled;
+
+}
+
+int roll_uniform(int n, int s) {
+    int total = 0;
+    for (int i=0;i<n;++i){
+        total += rand_uniform_distribution(1,6);
+    }
+    return total;
+}
 
 void sample_roll_uniform(int n, int s){
     
@@ -68,7 +85,7 @@ void sample_roll_uniform(int n, int s){
 
     int d;
     for (int i=0; i<trials; ++i ){
-        d = uniform_distribution(1,s);
+        d = roll_uniform(n,s);
         // printf("result: %d\n",d);
         total += d;
     }
@@ -79,6 +96,25 @@ void sample_roll_uniform(int n, int s){
 }
 
 
+void sample_roll_uniform2(int n, int s){
+    
+    int total = 0;
+    int trials = 200;
+
+    printf("UNIFORM2\n");
+
+    int d;
+    for (int i=0; i<trials; ++i ){
+        d = roll_uniform(3,6);
+        // printf("result: %d\n",d);
+        total += d;
+    }
+    double avg = total / trials;
+    printf("roll total: %d\n", total);
+    printf("roll average: %f\n", avg);
+
+}
+
 
 void main(void){
     
@@ -88,7 +124,6 @@ void main(void){
     for(;;){
         sample_roll(3,6);
         sample_roll_uniform(3,6);
-
         printf("\n");
         
         sleep(2);
