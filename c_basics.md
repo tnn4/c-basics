@@ -4,11 +4,14 @@
 
 Why does c need header files(`.h`)?
 
+Header files makes your life easier.
+
 https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html
 
 Header files eliminate code redundancy (DRY).
 With a header file, the related declarations appear in only one place.
 
+'Including a header file produces the same results as copying the header file into each source file that needs it.'
 
 ## Compile
 
@@ -17,26 +20,36 @@ Preprocessing
 // Preprocess
 // directives (#<directive>) are commands for the preprocessor
 // NOTE: there are no semicolons after a directive
+```
 
-// # Headers
+`include` header
+```c
 // The #include directive tells the preprocessor to open a specified file and
-// insert its contents into the current file
+// copy the header file into each source file that needs it
+```
 
-// The include directive has two forms:
 
-// #include <filename> for C's own library
+// The `include` directive has two forms:
+
+```c
+#include <filename> // for C's own std library
 // For example, the compiler will look inside `usr/include`
 
-// #include "path/to/filename" for our own headers
-// THe compiler looks in the current directory
+#include "path/to/filename" // for our own headers
+// The compiler looks in the current directory
 // Then the default system header locations
 
-// The places that will be searched for can be altered with
-// -I path
-// It is best not to put absolute paths in the #include directives
-// For max portability use relative paths
+```
 
+```
+The places that will be searched for can be altered with `-I path`.
+It is best not to put absolute paths in the #include directives
+For max portability use relative paths
+``````
+
+```c
 // stdio.h is a header file
+// it defines variable types, macros, and functions for input/output
 #include <stdio.h>
 ```
 
