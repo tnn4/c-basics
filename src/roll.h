@@ -35,7 +35,7 @@ void sample_roll(int n, int s){
     
     int total = 0;
     int times = 200;
-    printf("STANDARD\n");
+    printf("STANDARD %dd%d\n",n,s);
     int d;
     for (int i=0; i<times; ++i ){
         d = roll(n,s);
@@ -83,7 +83,7 @@ void sample_roll_uniform(int n, int s){
     int total = 0;
     int trials = 200;
 
-    printf("UNIFORM\n");
+    printf("UNIFORM %dd%d\n",n,s);
 
     int d;
     for (int i=0; i<trials; ++i ){
