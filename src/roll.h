@@ -116,3 +116,32 @@ void sample_roll_uniform2(int n, int s){
     printf("roll average: %.2f\n", avg);
 
 }
+
+#define BUF_SIZE 256
+
+// see: https://stackoverflow.com/questions/40118509/read-random-line-from-txt-file
+
+/* Returns a random line (w/o newline) from the file provided */
+char* choose_random_line(const char *filename){
+    FILE *f;
+    size_t lineno = 0;
+    size_t selectlen;
+    char selected[BUF_SIZE]; /* Arbitrary, make whatever size is needed */
+    char current[BUF_SIZE];
+    selected[0] = '\0';
+
+    f = fopen(filename,"r"); /* Add your own error checking */
+    // char* fgets(char *str, int n, FILE *stream)
+
+    while ( fgets(current, sizeof(current), f) ){
+        if (drand48() < 1.0 / ++lineno)
+            strcpy(selected,current);
+    }
+
+    fclose(f);
+    selectlen = strlen(selected);
+    if (selectlen > 0 && selected[selectlen-1] == '\n'){
+        selected[selectlen-1] = '\0';
+    }
+    return strdup(selected);
+}
