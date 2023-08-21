@@ -115,7 +115,9 @@ strcpy(a_var, "another string")
 printf("%s", a_var);
 ```
 
-This is just the tip of the iceberg.
+## Concatenating Strings
+
+Note: When we use `strcat()`, the size of the destination string should be large enough to store the resultant string. If not, we will get the segmentation fault error.
 
 ## The Hazard of Reading Strings
 
@@ -126,3 +128,6 @@ Reading strings can be problematic because you might get a bigger string than th
 
 [create c formatted strings (not printing them)](https://stackoverflow.com/questions/804288/creating-c-formatted-strings-not-printing-them)
 - More knowledgable folks recommend using `asprintf`, `snprintf` whenever possible
+
+see:
+- https://stackoverflow.com/questions/398395/why-is-the-asterisk-before-the-variable-name-rather-than-after-the-type
