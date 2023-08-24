@@ -174,6 +174,110 @@ d []
 
 ```
 
+## Enums
+
+enums are enumerations which means countable
+
+in the context of programming enumerated means: a discret set of meaningful values
+
+E.g. 
+
+- Boolean = {T, F}
+- Color = {r,g,b}
+- Representing the suits of a card = {Hearts, Spade, Club, Diamon}
+- States of a Finite State Machine = {Go, Slow, Stop}
+
+Implementation in C:
+
+You can use macros (not recommended b/c verbosity, but possible)
+```c
+#define SUIT     int
+#define CLUBS    0
+#define DIAMONDS 1
+#define HEARTS   2
+#define SPADES   3
+
+SUIT s;
+s = HEARTS
+```
+
+Or you can use `enumerated type`:
+
+```c
+// enum variable
+enum {CLUBS, DIAMONDS, HEARTS, SPADES} s1,s2;
+
+// enum type
+enum suit {CLUBS, DIAMONDS, HEARTS, SPADES};
+suit s1,s2;
+```
+
+Bool is just an enum with two values
+```
+typedef enum {TRUE, FALSE} Bool;
+```
+
+**You can assign your own constants**
+
+By default the compiler assigns the first enum as 0 then counts upward, i.e. {0,1,2,...} so:
+```c
+===
+enum suit {CLUBS, DIAMONDS, HEARTS, SPADES};
+suit s1,s2;
+===
+
+is the same as
+
+===
+enum suit {CLUBS=0, DIAMONDS=1, HEARTS=2, SPADES=3};
+suit s1,s2;
+===
+
+but this is legal too
+
+===
+enum suit {CLUBS=1000, DIAMONDS=99, HEARTS=23, SPADES=321};
+suit s1,s2;
+===
+
+you can assign your enum any constant you wish
+
+```
+
+WARNING: Although in C, enums are just thinly disguised integers, treating them as just integers defeats their purpose. Treat enum members as a discrete type.
+
+E.g.
+
+Using enums for error codes
+
+```c
+
+fn do_something(){
+    printf("I did something");
+    return 0;
+}
+
+fn got_error() {
+    printf"I erred");
+    return 1;
+}
+
+====
+
+enum err {NO_ERROR=0, AN_ERROR=1};
+
+fn do_something_e() { 
+    printf("I did something");
+    return NO_ERROR;
+}
+
+fn got_error_e() {
+    printf"I erred");
+    return AN_ERROR;
+}
+
+See how these functions are mechanically the same, but to the programmer one set is more descriptive.
+```
 
 ## Functions
 
