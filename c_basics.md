@@ -85,6 +85,57 @@ Use them
 */
 ```
 
+## Structs vs Typedef
+
+Structs When we need to store a collection of data items: use structs
+
+struct variables
+```c
+struct {
+    int   id;
+    char *name;
+} struct_var1, struct_var2;
+```
+
+struct tags
+```c
+struct struct_1 {
+    int   id;
+    char *name;
+}; // <-- note the semicolon
+
+// initialization
+struct struct_1 s1 = { 1, "struct with tag" };
+```
+
+typedef
+- Note: use `struct tags` for linked lists, not typedef
+```c
+typedef struct {
+    int  id;
+    char *name;
+} struct_t;
+
+struct_t s_t1 = {1, "struct as type" };
+``` 
+
+Array of Structures
+
+```c
+struct dialing_code {
+    char *country;
+    int code;
+};
+
+const struct dialing_code country_codes[] = 
+{
+    {"Argentina", 54}, {"Bangladesh", 880},
+    {"Brazil", 55}, {"Myanmar", 95},
+    ...
+    {"US", 1}, {"Vietnam", 84}
+};
+```
+
 ## Functions
 
 Unlike languages like Javascript, Java, C#, where functions can be declared anywhere in the source (JS has hoisting and Java, C# don't require header files) function order does matter in C. C needs to functions to be declared at the top or in header files (`.h`) before they can be used.
