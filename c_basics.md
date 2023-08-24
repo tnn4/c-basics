@@ -136,6 +136,45 @@ const struct dialing_code country_codes[] =
 };
 ```
 
+# Unions
+
+unions consist of a group of members
+
+the compile only allocates the enough space for the largest member in that group, because only one type of that set can be used
+
+
+```c
+union {
+    int    i;
+    double d;
+} u;
+
+struct {
+    int    i;
+    double d;
+} s;
+
+Memory difference
+
+* members of s are stored at different addresses
+* members of u are stored at the same addresses
+* this means that unions take up less memory BUT they can only store one of the members at a time
+
+Assume that: 
+- int    takes 2 bytes
+- double takes 4 bytes
+
+Structure     Union
+i []          i[]d
+i []          i[]d
+d []           []d          
+d []           []d
+d []
+d []
+
+```
+
+
 ## Functions
 
 Unlike languages like Javascript, Java, C#, where functions can be declared anywhere in the source (JS has hoisting and Java, C# don't require header files) function order does matter in C. C needs to functions to be declared at the top or in header files (`.h`) before they can be used.
