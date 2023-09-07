@@ -25,4 +25,4 @@ On linux you can use GCC:
 - `gcc -o <target file> <input.c>`
 
 You can also use zig as a drop-in C/C++ compiler
-- `zig cc -o <target file> <input.c>`
+- `zig cc -o <target file> <input.c>`s

@@ -7,10 +7,6 @@ Put uncategorized info here. Sort them when you can.
 Table of Contents
 - [globals in resource constrained environments](#global-variables-in-resource-constrained-environments)
 
-## naming conventions 
-- see: https://stackoverflow.com/questions/1722112/what-are-the-most-common-naming-conventions-in-c
-
-
 
 [top](#top)
 

@@ -6,7 +6,7 @@ Dynamic storage allocation is useful for building lists, trees, graphs and other
 
 The most basic linked data structure: a linked list.
 
-Fun fact: Although C programmers love linked lists, Rust programmers are not so enthusiastic: [Learning Rust With Entirely Too Many Linked Lists](https://rust-unofficial.github.io/too-many-lists/)
+Fun fact: Although C programmers love linked lists, Rust programmers are not so enthusiastic (follow the link to learn even more about linked lists and Rust): [Learning Rust With Entirely Too Many Linked Lists](https://rust-unofficial.github.io/too-many-lists/)
 
 
 ```
@@ -15,8 +15,9 @@ The last node in the list has a null pointer
 ```
 Linked lists are more flexible than arrays:
 - can more easily insert, delete nodes in a linked list, allowing it to grow or shrink
-- BUT: you lose random access
-- any element in an array can be accessed in the same amount of time, so O(1)
+- BUT: you lose random access, you must traverse the list to see it all, [analogy](#miekagure)
+- any element in an array can be accessed in the same amount of time, so O(1) by moving the pointer
+- moving a pointer = changing pointer value in memory (CPU register)
 - accessing a node is fast if node is close to beginning, BUT: slow if node is close to n, average search time = O(n/2)
 
 Declare (simple) Node type
@@ -249,4 +250,20 @@ struct node* delete_from_list(struct node *list, int n){
   free(cur)
   return list;
 }
+```
+
+Appendix:
+
+
+##### _miegakure_  
+```
+Okay, time for our vacation to Japan. First stop is a Japanese garden. See it in your head. 
+
+The green bushes, the babbling brook, the little bridge ahead of you. Can you see all of it?
+
+No, you can’t. 
+That’s not a fault of your imagination, that’s by design. 
+Japanese gardens are fashioned using a principle called miegakure. That translates as “hide and reveal.” The path is structured so there’s no single point from which you can see the entire garden. 
+You have to keep walking to reveal new stuff. 
+You can hear the water running but you can’t see it until you turn the corner. You smell the flowers but they’re not visible until you get past the trees.
 ```

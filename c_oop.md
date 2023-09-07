@@ -48,10 +48,42 @@ Clever naming conventions like underscores are unnecessary using this method, bu
 
 You also need to make it clear if the caller or the library is responsible for calling malloc() and free(). Most likely you will have mystruct_t *create() and void destroy(mystruct_t *target) methods.
 
+
+
+Notes:
+
+```
+https://www.reddit.com/r/C_Programming/comments/m0ui5i/why_use_c_instead_of_c/
+
+Learn to add function pointer members to structs.
+
+Another similar approach is for an object to have a single pointer to a separate (often constant and statically-allocated) structure of function pointers. That way multiple objects with a common set of methods can share the same set of function pointers.
+
+This mirrors C++'s per-object vtable pointer used for virtual function dispatch.
+```
+
+```
+I once had a professor describe the development of C++ as "trying to make an octopus by stapling more legs to a dog"
+```
+
+https://stackoverflow.com/questions/897366/how-do-pointer-to-pointers-work-in-c-and-when-might-you-use-them/897414#897414
+
+function factories are examples of higher order functions
+
+```
+// this is a function called functionFactory which receives parameter n
+// and returns a pointer to another function which receives two ints
+// and it returns another int
+int (*functionFactory(int n))(int, int) {
+    printf("Got parameter %d", n);
+    int (*functionPtr)(int,int) = &addInt;
+    return functionPtr;
+}```
+
 see:
-- http://staff.washington.edu/gmobus/Academics/TCES202/Moodle/OO-ProgrammingInC.html
+- http://staff.washington.edu/gmobus/Academics/TCES202/Moodle/OO-ProgrammingInC.
+- https://stackoverflow.com/questions/351733/how-would-one-write-object-oriented-code-in-c
 - https://softwareengineering.stackexchange.com/questions/16025/why-is-oop-difficult
 - https://stackoverflow.com/questions/674722/struggling-with-c-coming-from-object-oriented-land
 - opaque pointers - https://stackoverflow.com/questions/7553750/what-is-an-opaque-pointer-in-c
 - example heap size java: https://stackoverflow.com/questions/4667483/how-is-the-default-max-java-heap-size-determined
-- 

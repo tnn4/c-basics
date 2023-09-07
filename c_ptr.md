@@ -1,6 +1,17 @@
 # C Pointers
 
-Pointers, it's that elephant in the memory buffer that we seldom talk about but probably should.
+What's the point of pointers?
+
+Why use them?
+
+What are they? variables that store memory address 
+
+What they do? a whole damn lot
+
+Fun experiment:
+- Avoid using pointers completely and see how far you can get in C. Avoid them until you hit a wall.
+
+Pointers, it's that elephant in the memory buffer that is seldom taught well but probably should be.
 
 Ever see some nerd hacking on his computer and seeing crap like this
 ```
@@ -135,9 +146,30 @@ Is it `int* p` or is it `int *p`?
 
 Pointer variables hold an address.
 
+
+A type and a pointer to that type are not the same thing even though they almost look the same.
+```c
 int i = 0; // This is an integer type
 
-int* i 
+int* i_ptr; // This is a pointer to an integer type. It is not an integer
+```
+
+Confusing pointers to a type with the type itself is a common mistake and sometimes dangerous mistake.
+Stupid but funny analogy
+```
+typedef struct {
+  char species[10];
+} Animal;
+
+Animal wolf->species = "wolf" ;
+Animal2;
+
+Animal* sheep;
+
+sheep = &wolf; // A wolf in sheep's clothing
+Animal2 = *sheep; // that ain't no sheep
+
+```
 
 ## Multiple assignments
 
@@ -186,4 +218,19 @@ Each byte has its own address so:
 - 64-bit sytsems have: 2^64 -> 1.84e19 bytes
 
 64 bits have 2^32 times the addressing space of 32 bit systems
-64-bit systems can theoretically reference 18,446,744,073,709,551,616 bytes, or 17,179,869,184 GB (16 exabytes) of memory
+64-bit systems can theoretically reference 18,446,744,073,709,551,616 bytes, or 17,179,869,184 GB (16 exabytes) of 
+
+
+
+More reading:
+- https://www.reddit.com/r/C_Programming/comments/uqkp8q/why_would_anybody_use_pointers/
+- https://www.reddit.com/r/learnprogramming/comments/kzbn6/whats_the_point_of_pointers/
+
+pointer synonyms
+- arrow
+- reference
+- handle
+
+Proper use of pointers save cpu time and memory.
+
+Improper use of pointers will lead to segfaults and crashes.

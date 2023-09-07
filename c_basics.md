@@ -15,6 +15,10 @@ With a header file, the related declarations appear in only one place.
 
 ## Compile
 
+C programs need to be built/compiled before they are used like you need to build a house before you can live in it, or build a car before you can drive it. Fortunately, building a computer program, in C at least, takes from seconds-minutes(for small projects e.g. your barebones http server or console app) to hours (for large projects e.g. building the Linux Kernel).
+
+![c_compilation_system](image/c_compilation_system.png)
+
 Preprocessing
 ```c
 // Preprocess
@@ -252,6 +256,8 @@ Using enums for error codes
 
 ```c
 
+=== NO ENUMS
+
 fn do_something(){
     printf("I did something");
     return 0;
@@ -262,7 +268,7 @@ fn got_error() {
     return 1;
 }
 
-====
+=== YES ENUMS
 
 enum err {NO_ERROR=0, AN_ERROR=1};
 

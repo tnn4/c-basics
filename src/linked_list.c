@@ -154,6 +154,7 @@ struct Node* search_list_and_print(struct Node *list, char *value_to_match){
 // 3. Call 'free' to reclaim space taken by deleted node
 
 // Tricky part: if we search the obvious way with only one pointer, we won't have the information of the previous node, only the deleted one
+// We need the previous node to point to the deleted node's next pointer (this is the bypass)
 // We need to use a trailing pointer, where we keep both `prev` and `curr` so we can next prev to bypass the deleted node
 struct Node* delete_from_list(struct Node *list, char *value_to_delete){
     

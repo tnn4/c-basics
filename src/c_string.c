@@ -1,8 +1,9 @@
+#include <string.h> // strcat(s1,s2)
+
 #include <time.h>
 #define __STDC_WANT_LIB_EXT2__ 1
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> // strcat(s1,s2)
 #include <errno.h> // ENOMEM
 
 void read_file_as_bytes(char * file_name);
